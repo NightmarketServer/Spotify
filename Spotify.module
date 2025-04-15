@@ -1,0 +1,19 @@
+#!name=Spotify Module
+#!desc=Mở khóa một phần Premium, không thể thiết lập chất lượng âm thanh ở mức cao nhất, các nút phân luồng phải cùng địa điểm đăng ký (khuyến khích đăng nhập rồi bật, khởi động lại app chờ đợi hiệu quả)
+# Chức năng: 1. Loại bỏ quảng cáo khi phát 2. Hiển thị danh sách nghệ sĩ/album bình thường 3. Loại bỏ phát ngẫu nhiên
+# Mã nguồn gốc từ: https://github.com/app2smile/rules /  https://github.com/LOWERTOP/Shadowrocket-First
+# Kho lưu trữ của module này: https://github.com/NightmarketServer/Spotify
+
+[Rule]
+DOMAIN-SUFFIX,ad.doubleclick.net,REJECT-DROP
+
+[Script]
+# Script JS được tạo ra để thay thế Header Rewrite, nếu gặp sự cố hãy chú thích dòng dưới
+spotify-header = type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/user-customization-service\/v1\/customize$,requires-body=false,script-path=https://raw.githubusercontent.com/NightmarketServer/Spotify/refs/heads/main/Spotify.js,timeout=10
+
+# Script gốc từ app2smile
+spotify-json = type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
+spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
+
+[MITM]
+hostname = %APPEND% spclient.wg.spotify.com
