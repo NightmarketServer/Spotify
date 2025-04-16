@@ -1,7 +1,9 @@
 #!name=Spotify Premium 
 #!desc=Mở khóa một phần tính năng Premium. Khuyến nghị đăng nhập lại sau khi cài đặt. Không hỗ trợ chất lượng âm thanh cao cấp.
-#Author: https://t.me/Dhungx
-#Discord: https://discord.gg/juY9tw5AJY
+# 👤 Author: https://t.me/dhungx  
+# 💬 Discord: https://discord.gg/juY9tw5AJY  
+# 🚀 Released by: Nightmarket Server  
+
 [MITM]
 hostname = %APPEND% spclient.wg.spotify.com
 
