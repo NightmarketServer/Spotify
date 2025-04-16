@@ -23,10 +23,17 @@
 - ⚙️ Tích hợp **MITM**, **Rewrite**, **Script** đầy đủ cho Spotify
 
 ---
+## 🧠 Thông tin kỹ thuật
 
+- Tác giả gốc: `@dhungx`
+- **Phân phối lại bởi**: `Nightmarket Server`
+
+ ---
+ 
 📌 **Lưu ý:**  
 - **Để tải nhạc và phát nhạc chất lượng cao**, bạn cần phải **log out và đăng nhập lại** sau khi bật cấu hình này.
 - Không hỗ trợ các tính năng quản lý tài khoản như thay đổi email, tên, hoặc mật khẩu.
 - **Để sử dụng Spotify Premium**, làm theo hướng dẫn chi tiết tại: [(https://youtu.be/50OklJ3QBxk?si=Il0SOGHklh9NbIZT)](https://youtu.be/tLoZJrtPBZg?si=g9j3fAUTE9V3-Aiw)
 
 ---
+
