@@ -25,7 +25,7 @@
 ---
 ## 🧠 Thông tin kỹ thuật
 
-- Tác giả gốc: `@dhungx`
+- Tác giả gốc: `app2smile, Sooyaaabo `
 - **Phân phối lại bởi**: `Nightmarket Server`
 
  ---
