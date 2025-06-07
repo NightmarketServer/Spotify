@@ -6,10 +6,21 @@
 #!category=iKeLee
 #!openUrl=https://apps.apple.com/app/id324684580
 #!tag=去广告
-[Script]
-JSON处理 = type=http-request, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://kelee.one/Resource/Script/Spotify/Spotify_remove_ads.js, timeout=10
+#!author=001ProMax[https://github.com/001ProMax]
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Spotify.png
+#!category=iKeLee
+#!openUrl=https://apps.apple.com/app/id324684580
+[Rule]
+AND,((DOMAIN,spclient.wg.spotify.com,extended-matching),(PROTOCOL,QUIC)),REJECT
 
-Proto处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://kelee.one/Resource/Script/Spotify/Spotify_proto.js, requires-body=true, binary-body-mode=true, timeout=10
+[URL Rewrite]
+^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/(.*)platform=iphone https://spclient.wg.spotify.com/$1/$2platform=ipad header
+
+[Map Local]
+^https:\/\/spclient\.wg\.spotify\.com\/pendragon\/ data-type=text data="{}" status-code=200
+
+[Script]
+Protobuf处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(?:bootstrap|user-customization-service), script-path=https://kelee.one/Resource/Script/Spotify/Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=10, argument="[{tab},{useractivity}]"
 
 [MITM]
 hostname = %APPEND% spclient.wg.spotify.com
