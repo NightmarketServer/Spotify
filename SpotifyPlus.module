@@ -2,26 +2,9 @@
 #!desc=Mở khóa một phần tính năng Premium. Khuyến nghị đăng nhập lại sau khi cài đặt. Không hỗ trợ chất lượng âm thanh cao cấp.
 # 💬 Discord: https://discord.gg/juY9tw5AJY  
 # 🚀 Released by: Nightmarket Server  
-#!author=app2smile[https://github.com/app2smile]
-#!category=iKeLee
-#!openUrl=https://apps.apple.com/app/id324684580
-#!tag=去广告
-#!author=001ProMax[https://github.com/001ProMax]
-#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Spotify.png
-#!category=iKeLee
-#!openUrl=https://apps.apple.com/app/id324684580
-
-[Rule]
-AND,((DOMAIN,spclient.wg.spotify.com,extended-matching),(PROTOCOL,QUIC)),REJECT
-
-[URL Rewrite]
-^https:\/\/(.+)\.spotify\.com(:443)?\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/(.*)platform=iphone https://$1.spotify.com$2/$3/$4platform=ipad header
-
-[Map Local]
-^https:\/\/.+\.spotify\.com\/pendragon\/ data-type=text data="{}" status-code=200
-
-[Script]
-Protobuf处理 = type=http-response, pattern=^https:\/\/.+\.spotify\.com(:443)?\/(?:bootstrap|user-customization-service), script-path=https://kelee.one/Resource/Script/Spotify/Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=10, argument="[{tab},{useractivity}]"
 
 [MITM]
-hostname = %APPEND% *.spotify.com
+hostname = %APPEND% spclient.wg.spotify.com
+
+[Script]
+spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-body-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/dhungx/modules-shadowrocket/main/js/spotify/spotify.js,script-update-interval=0
